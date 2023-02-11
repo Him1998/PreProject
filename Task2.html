@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        #box {
+            width: 8cm;
+            margin: 3cm;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column ;
+        }
+        .child {
+            margin-left:2cm;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+  <div id="box">
+    This is Parent
+  </div>  
+  <button id="color"><b>changeColor</b></button>
+  <button id="add">addChild</button>
+  <button id="delete">removeChild</button>
+
+  <script>
+    const color = document.getElementById("color");
+    const box = document.getElementById("box");
+    const add = document.getElementById("add");
+    const del = document.getElementById("delete");
+
+    add.addEventListener("click",Add);
+    del.addEventListener("click",Del);
+    color.addEventListener("click",Col);
+    let count = 0;
+    function Add () {
+        count++;
+        console.log(count);
+        box.innerHTML += (`<div class="child" id=${count}>Child Node</div>`);
+    }
+
+    function Del() {
+        let remove_node = document.getElementById(count);
+        remove_node.remove();
+        if(count>0){
+            count--;
+        }
+        console.log(count)
+    }
+    function Col() {
+        if(box.style.backgroundColor=="blue"){
+            box.style.backgroundColor="red";
+        }
+        else{
+            box.style.backgroundColor="blue";
+        }
+    }
+  </script>
+</body>
+</html>
